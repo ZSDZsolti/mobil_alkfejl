@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "48827373754",
+    "project_id": "kerteszetiwebaruhaz",
+    "storage_bucket": "kerteszetiwebaruhaz.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:48827373754:android:3a8d1a514b24243d3eca83",
+        "android_client_info": {
+          "package_name": "com.example.kerteszeti_weboldal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCt7oXClWb6f6Yd9gViGSyB5DkYa7BzVs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

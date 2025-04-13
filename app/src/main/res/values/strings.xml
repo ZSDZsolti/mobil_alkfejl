@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Kerteszeti weboldal</string>
+    <string name="user_name">Felhasználónév</string>
+    <string name="password">Jelszó</string>
+    <string name="login">Bejelentkezés</string>
+    <string name="register">Regisztráció</string>
+    <string name="last_name">Vezetéknév</string>
+    <string name="first_name">Keresztnév</string>
+    <string name="email">Email</string>
+    <string name="password_again">Jelszó mégegyszer</string>
+</resources>

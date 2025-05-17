@@ -8,4 +8,17 @@
     <string name="first_name">Keresztnév</string>
     <string name="email">Email</string>
     <string name="password_again">Jelszó mégegyszer</string>
+    <string name="mentes">Mentés</string>
+    <string name="new_password">Új jelszó</string>
+
+    <string-array name="main_menu_items">
+        <item>-------------</item>
+        <item>Profilom</item>
+        <item>Kijelentkezés</item>
+    </string-array>
+    <string-array name="profile_menu_items">
+        <item>-------------</item>
+        <item>Főoldal</item>
+        <item>Kijelentkezés</item>
+    </string-array>
 </resources>

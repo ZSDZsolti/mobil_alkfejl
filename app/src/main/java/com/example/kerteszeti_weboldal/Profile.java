@@ -21,12 +21,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class Profile extends AppCompatActivity{
     private FirebaseAuth f_auth;
     private FirebaseFirestore f_store;
-    EditText lastName;
-    EditText firstName;
-    EditText userName;
-    EditText email;
-    EditText password;
-
+    EditText lastName, firstName, userName, password;
     String uid;
 
     Intent mainActivity;
@@ -44,7 +39,6 @@ public class Profile extends AppCompatActivity{
         lastName = findViewById(R.id.lastName);
         firstName = findViewById(R.id.firstName);
         userName = findViewById(R.id.userName);
-        email = findViewById(R.id.email);
         password = findViewById(R.id.password);
 
         if (f_auth.getCurrentUser() != null) {
@@ -56,7 +50,6 @@ public class Profile extends AppCompatActivity{
                             lastName.setHint(documentSnapshot.getString(("lastName")));
                             firstName.setHint(documentSnapshot.getString(("firstName")));
                             userName.setHint(documentSnapshot.getString(("userName")));
-                            email.setHint(f_auth.getCurrentUser().getEmail());
                         }
                     });
         }
@@ -93,9 +86,8 @@ public class Profile extends AppCompatActivity{
         String lastNameText = lastName.getText().toString();
         String firstNameText = firstName.getText().toString();
         String userNameText = userName.getText().toString();
-        String emailText = email.getText().toString();
         String passwordText = password.getText().toString();
-        AtomicBoolean emailOrPasswordChange = new AtomicBoolean(false);
+        AtomicBoolean PasswordChange = new AtomicBoolean(false);
         boolean elseChange = false;
         AtomicBoolean updateFail = new AtomicBoolean(false);
 
@@ -113,23 +105,15 @@ public class Profile extends AppCompatActivity{
                 updates.put("userName", userNameText);
                 elseChange = true;
             }
-            if(!emailText.isEmpty()){
-                emailOrPasswordChange.set(true);
-            }
             if(!passwordText.isEmpty()){
-                emailOrPasswordChange.set(true);
+                PasswordChange.set(true);
             }
 
             if(elseChange){
                 f_store.collection("users").document(uid).update(updates)
                         .addOnSuccessListener(aVoid -> {
-                            if(emailOrPasswordChange.get()){
-                                if(!emailText.isEmpty()){
-                                    Objects.requireNonNull(f_auth.getCurrentUser()).updateEmail(emailText);
-                                }
-                                if(!passwordText.isEmpty()){
-                                    Objects.requireNonNull(f_auth.getCurrentUser()).updatePassword(passwordText);
-                                }
+                            if(PasswordChange.get()){
+                                Objects.requireNonNull(f_auth.getCurrentUser()).updatePassword(passwordText);
                                 f_auth.signOut();
                                 startActivity(mainActivity);
                                 finish();
@@ -143,13 +127,8 @@ public class Profile extends AppCompatActivity{
                             Toast.makeText(Profile.this, "Sikertelen módosítás: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                         });
             }
-            if(emailOrPasswordChange.get() && !updateFail.get()){
-                if(!emailText.isEmpty()){
-                    Objects.requireNonNull(f_auth.getCurrentUser()).updateEmail(emailText);
-                }
-                if(!passwordText.isEmpty()){
-                    Objects.requireNonNull(f_auth.getCurrentUser()).updatePassword(passwordText);
-                }
+            if(PasswordChange.get() && !updateFail.get()){
+                Objects.requireNonNull(f_auth.getCurrentUser()).updatePassword(passwordText);
                 f_auth.signOut();
                 startActivity(mainActivity);
                 finish();

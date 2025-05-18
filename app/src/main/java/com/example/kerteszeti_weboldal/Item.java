@@ -1,9 +1,9 @@
 package com.example.kerteszeti_weboldal;
 
 public class Item {
-    private final String name;
-    private final int price;
-    private final String description;
+    private String name;
+    private int price;
+    private String description;
     private int quantity;
     private boolean inTheCart;
     private int quantityInTheCart;
@@ -15,6 +15,9 @@ public class Item {
         this.quantity = quantity;
         inTheCart = false;
         quantityInTheCart = 0;
+    }
+
+    public Item() {
     }
 
     public String getName() {
